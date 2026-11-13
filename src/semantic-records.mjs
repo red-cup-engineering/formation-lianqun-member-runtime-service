@@ -4,8 +4,8 @@ import { dirname, join, relative, resolve, sep } from "node:path";
 
 import { createImmutableContentCustody } from "@red-cup-engineering/immutable-content-custody-service";
 import { admitJsonSemanticContent, EMPTY_WITNESS_ROOT, identifyJsonSemanticContent, sha256DigestFromNiUri } from "@red-cup-engineering/semantic-content-identify-service";
-import { seavt } from "@red-cup-engineering/witness-journal-entry-service";
-import { appendSeavt, readSeavtAtPath } from "@red-cup-engineering/witness-journal-log-service";
+import { seavt } from "@red-cup-engineering/witness-journal-entry-services-section";
+import { appendSeavt, readSeavtAtPath } from "@red-cup-engineering/witness-journal-log-services-section";
 
 const OBJECT_KIND = "union-officer-academy.record";
 const FEED = "academy.semantic-records";
