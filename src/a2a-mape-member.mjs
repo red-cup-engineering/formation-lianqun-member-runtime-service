@@ -60,7 +60,7 @@ function analyze(value, actor) {
   });
   if (value.scope === "union-readiness") {
     const covered = new Set(value.coveredOfficeIds ?? []);
-    const academyOwners = new Set(["union-officer-academy", "context-compilation-xiaowei", "independent-examination-xiaowei", "formation-market-xiaowei", "situated-practice-xiaowei", "qualification-registry-xiaowei"]);
+    const academyOwners = new Set(["union-officer-academy", "context-compilation-xiaowei-operations-services-section", "independent-examination-xiaowei-operations-services-section", "formation-market-xiaowei-operations-services-section", "situated-practice-xiaowei-operations-services-section", "qualification-registry-xiaowei-operations-services-section"]);
     for (const office of observed.offices ?? []) if (!covered.has(office.id) && !academyOwners.has(office.owner)) {
       if (office.owner === "unowned") findings.push({
         type: "office-ownership-coordination-required", severity: "coordination-required", office: office.id, owner: null, evidence: office.digest,
@@ -154,11 +154,11 @@ export function runMember(member, request) {
   const value = requestData(request);
   const actor = `urn:ame:${member}`;
   let artifact;
-  if (["formation-observation-xiaowei", "context-compilation-xiaowei"].includes(member) && value.stage === "monitor") artifact = monitor(value, actor);
-  else if (["formation-diagnosis-xiaowei", "independent-examination-xiaowei"].includes(member) && value.stage === "analyze") artifact = analyze(value, actor);
-  else if (["formation-planning-xiaowei", "formation-market-xiaowei"].includes(member) && value.stage === "plan") artifact = plan(value, actor);
-  else if (["formation-execution-xiaowei", "situated-practice-xiaowei"].includes(member) && value.stage === "execute") artifact = execute(value, actor);
-  else if (["formation-knowledge-xiaowei", "qualification-registry-xiaowei"].includes(member) && value.stage === "knowledge") artifact = know(value, actor);
+  if (["formation-observation-xiaowei", "context-compilation-xiaowei-operations-services-section"].includes(member) && value.stage === "monitor") artifact = monitor(value, actor);
+  else if (["formation-diagnosis-xiaowei", "independent-examination-xiaowei-operations-services-section"].includes(member) && value.stage === "analyze") artifact = analyze(value, actor);
+  else if (["formation-planning-xiaowei", "formation-market-xiaowei-operations-services-section"].includes(member) && value.stage === "plan") artifact = plan(value, actor);
+  else if (["formation-execution-xiaowei", "situated-practice-xiaowei-operations-services-section"].includes(member) && value.stage === "execute") artifact = execute(value, actor);
+  else if (["formation-knowledge-xiaowei", "qualification-registry-xiaowei-operations-services-section"].includes(member) && value.stage === "knowledge") artifact = know(value, actor);
   else throw new TypeError(`${member} refuses stage ${value.stage}`);
   return complete(request, actor, artifact);
 }
